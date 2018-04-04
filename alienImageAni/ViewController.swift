@@ -11,7 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var alienImage: UIImageView!
     @IBOutlet weak var lblCount: UILabel!
-    var index = 1
+    var index = 0
+    var direction = "right"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,16 +26,20 @@ class ViewController: UIViewController {
     }
     @IBAction func btUpdate(_ sender: Any) {
         
-        if index==5 {
-            index=0
+        if direction=="right" {
+            if index==4 {
+                direction = "left"
+            }
+            index = index+1
+        }else{
+            if index==2 {
+                direction = "right"
+            }
+            index = index-1
         }
-        index = index+1
-        
         var imageFile = "frame\(index).png"
         alienImage.image = UIImage(named: imageFile)
         lblCount.text = String(index)
-    
-
     }
 }
 
